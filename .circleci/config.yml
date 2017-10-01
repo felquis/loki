@@ -1,0 +1,22 @@
+general:
+  build_dir: examples/react-native
+
+machine:
+  xcode:
+    version: "9.0"
+   pre:
+    - xcrun instruments -w 'iPhone 7 (11.0) [' || true
+  post:
+    - 'npm run storybook':
+      background: true
+  xcode:
+    version: 8.0
+
+dependencies:
+  pre:
+    - which node || brew install node
+    - npm install
+
+test:
+  override:
+    - npm run test-ci
